@@ -2,6 +2,7 @@ import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserLog } from '../../interfaces/user-log';
 import { environment } from '../../../environments/environment.development';
+import { UserReg } from '../../interfaces/user-reg';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,12 @@ export class HttpService {
 
   }
 
-  register(){
+  register(formData:UserReg){
     
+    return this.http.post(`${environment.URL_BACKEND}/${environment.REGISTER_ENDPOINT}`,formData,{
+      headers:this.headers,
+      responseType:'text'
+    })
   }
 
 

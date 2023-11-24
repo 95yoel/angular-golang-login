@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UserLog } from '../../interfaces/user-log';
 import { HttpService } from '../../services/http/http.service';
+import { ValidationRegService } from '../../services/validation-reg/validation-reg.service';
 
 
 @Component({
@@ -19,16 +20,23 @@ export class LoginComponent {
     email : '',
     password: ''
   }
-  constructor(private http:HttpService){}
+  constructor(private http:HttpService,private validator:ValidationRegService){}
   
   onSubmit(){
-    console.log(this.formData);
-    this.http.login(this.formData).subscribe(
-      (res)=>{
-        console.log(res);
+
+    this.validator.validationLogin(this.formData).then(
+      ()=>{
+        this.http.login(this.formData).subscribe(
+          (res)=>{
+            console.log(res);
+          }
+        );
+      }
+    ).catch(
+      (error)=>{
+        console.warn("Error :\n",error);
       }
     );
-
   }
 
 }

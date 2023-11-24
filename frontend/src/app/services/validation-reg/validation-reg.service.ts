@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserForm } from '../../interfaces/user-reg';
+import { UserLog } from '../../interfaces/user-log';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ export class ValidationRegService {
     this.validatePassword(form);
     this.validateEmptyFields(form);
   }
+
+  async validationLogin(form:UserLog){
+    this.validateEmptyLogForm(form);
+    this.validatePasswordLenght(form);
+
+  } 
+
+  
 
   /*
   Throws an error is a field is empty or too short
@@ -60,6 +69,21 @@ export class ValidationRegService {
     }
   }
 
-
-
+  /*
+  Functions to validate Lgin
+  */
+  // Check if any properties in form are empty 
+  validateEmptyLogForm(form:UserLog){
+    for (const key in form) {
+      if (key in form && form[key as keyof UserLog] === '') {
+        throw new Error("Empty values at form");
+      }
+    }
+  }
+  //Check if the password is larger than 8
+  validatePasswordLenght(form:UserLog){
+    if(form.password.length<8){
+      throw new Error("Password too short");
+    }
+  }
 }
