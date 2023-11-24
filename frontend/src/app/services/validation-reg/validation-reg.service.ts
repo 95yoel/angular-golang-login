@@ -23,8 +23,6 @@ export class ValidationRegService {
 
   } 
 
-  
-
   /*
   Throws an error is a field is empty or too short
   */

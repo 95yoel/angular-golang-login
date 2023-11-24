@@ -23,9 +23,10 @@ export class LoginComponent {
   constructor(private http:HttpService,private validator:ValidationRegService){}
   
   onSubmit(){
-
+    // Validate the form data using the validation service
     this.validator.validationLogin(this.formData).then(
       ()=>{
+        // Call the HTTP service to log the user 
         this.http.login(this.formData).subscribe(
           (res)=>{
             console.log(res);
@@ -33,6 +34,7 @@ export class LoginComponent {
         );
       }
     ).catch(
+      //Log validation errors
       (error)=>{
         console.warn("Error :\n",error);
       }
