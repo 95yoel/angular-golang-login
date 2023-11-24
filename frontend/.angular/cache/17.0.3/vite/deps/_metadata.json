@@ -1,47 +1,56 @@
 {
-  "hash": "aa633bb2",
-  "browserHash": "1285b349",
+  "hash": "22147e6e",
+  "browserHash": "19d2eb5c",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "bfc6679d",
+      "fileHash": "f5002973",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "84d1e098",
+      "fileHash": "37c340f4",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "f8d81824",
+      "fileHash": "806304c4",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "7dfcd098",
+      "fileHash": "f7e1df3f",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "580d7380",
+      "fileHash": "8946c187",
       "needsInterop": false
     },
     "rxjs": {
       "src": "../../../../../node_modules/rxjs/dist/esm5/index.js",
       "file": "rxjs.js",
-      "fileHash": "421ab4a5",
+      "fileHash": "a6c32476",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "ea4b1e0f",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-EBIFK43P": {
-      "file": "chunk-EBIFK43P.js"
+    "chunk-K5IBUJ7L": {
+      "file": "chunk-K5IBUJ7L.js"
+    },
+    "chunk-YZILP6V2": {
+      "file": "chunk-YZILP6V2.js"
     },
     "chunk-CRS6PUEZ": {
       "file": "chunk-CRS6PUEZ.js"
