@@ -8,12 +8,17 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+/*
+Generates a bcryp hash from the provided password
+*/
 func HashPassword(password string) []byte {
+	// Generate bcrypt hash
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Return the hash
 	return hashedPassword
 }
 
