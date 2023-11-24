@@ -101,7 +101,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	// Search the user in the database
 	row := dbs.DB.QueryRow(`SELECT * FROM users WHERE email = $1`, loginUser.Email)
-
+	/*
+		Scan converts columns read from the database into Go types
+	*/
 	err = row.Scan(&userRegistered.Id, &userRegistered.Name, &userRegistered.Surname, &userRegistered.Email, &userRegistered.Password_hash)
 	if err != nil {
 		log.Printf("Error scanning row: %v", err)
@@ -123,4 +125,20 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	// Write the token in the response
 	w.Write([]byte(token))
+}
+
+/*
+DELETE ALL FIELDS ON THE DATABASE
+*/
+
+func DeleteALL(w http.ResponseWriter, r *http.Request) {
+	rows, err := dbs.DB.Query("DELETE FROM users")
+	if err != nil {
+		log.Printf("Error executing the query: %v", err)
+		http.Error(w, "Error executing the query", http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	fmt.Println("All users deleted")
 }
