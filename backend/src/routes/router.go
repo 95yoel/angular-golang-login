@@ -11,5 +11,8 @@ func Router() http.Handler {
 		Write below all the routes of the backend
 	*/
 
+	r.HandleFunc("/", GetAllusers)
+	r.HandleFunc("/post", CreateUser)
+
 	return r
 }
