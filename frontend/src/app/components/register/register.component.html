@@ -1,1 +1,32 @@
-<p>register works!</p>
+<main>
+    <table>
+        <tr>
+            <td>Name :</td>
+            <td><input type="text" [(ngModel)]="formData.name"></td>
+        </tr>
+        <tr>
+            <td>Surname :</td>
+            <td><input type="text" [(ngModel)]="formData.surname"></td>
+        </tr>
+        <tr>
+            <td>Email :</td>
+            <td><input type="text" [(ngModel)]="formData.email"></td>
+        </tr>
+        <tr>
+            <td>Password :</td>
+            <td><input type="password" [(ngModel)]="formData.password"></td>
+        </tr>
+        <tr>
+            <td>Repeat password :</td>
+            <td><input type="password" [(ngModel)]="formData.confirmPassword"></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;" colspan="2">Already have an account? <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" (click)="onSubmit()">Send</button></td>
+        </tr>
+    </table>
+</main>
+
+
