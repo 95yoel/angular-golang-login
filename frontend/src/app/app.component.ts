@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RoutesHandlerService } from './services/routes-handler/routes-handler.service';
+import { HttpService } from './services/http/http.service';
 
 @Component({
   selector: 'app-root',

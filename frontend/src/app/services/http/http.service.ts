@@ -48,5 +48,6 @@ export class HttpService {
     this.auth.isValidJWT();
     this.router.navigate(['/private']);
   }
+  
 
 }

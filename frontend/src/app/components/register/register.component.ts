@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { UserForm, UserReg } from '../../interfaces/user-reg';
 import { HttpService } from '../../services/http/http.service';
 import { ValidationRegService } from '../../services/validation-reg/validation-reg.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { RoutesHandlerService } from '../../services/routes-handler/routes-handler.service';
 
 
 @Component({
@@ -24,7 +26,12 @@ export class RegisterComponent {
     confirmPassword: ''
   }
 
-  constructor(private http:HttpService,private validator:ValidationRegService){}
+  constructor(private http:HttpService,private validator:ValidationRegService,private routesHandler:RoutesHandlerService){}
+
+
+  ngOnInit(){
+    this.routesHandler.verifyUserStatus();
+  }
 
   onSubmit(){
     // Validate the form data using the validation service

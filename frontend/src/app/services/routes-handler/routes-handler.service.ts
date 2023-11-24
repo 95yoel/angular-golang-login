@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class RoutesHandlerService {
 
   private subscriber : Subscription = new Subscription;
   
-  constructor(private location:Location,private router:Router) { }
+  constructor(private location:Location,private router:Router,private auth:AuthService) { }
 
   // Subscribe to events emmitted by the router
   subscribe(){
@@ -30,6 +31,17 @@ export class RoutesHandlerService {
   // Unsubscribe from router events and prevent memory leaks
   unSubscribe(){
     this.subscriber.unsubscribe();
+  }
+
+
+  /*
+  When the user enters into a component this funcion verify is the user has credentials on the 
+  localstorage , if its correct navigate to private
+  */
+  verifyUserStatus(){
+    if(this.auth.isValidJWT()){
+      this.router.navigate(['/private']);
+    }
   }
 
 

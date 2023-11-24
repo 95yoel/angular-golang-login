@@ -40,8 +40,9 @@ export class AuthService {
       localStorage.setItem(this.surnameTokenKey,decodedToken.surname);
       localStorage.setItem(this.emailTokenKey,decodedToken.email);
       return expirationTime > Date.now();
+    }else{
+      return false;
     }
-    return false;
   }
   deauthorize(){
     localStorage.removeItem(this.authTokenKey);
@@ -54,5 +55,7 @@ export class AuthService {
   getLocalStorage(item:string):string{
     return localStorage.getItem(item)||'';
   }
+
+  
 
 }
