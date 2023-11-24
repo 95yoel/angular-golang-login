@@ -18,7 +18,8 @@ export class HttpService {
   login(formData:UserLog){
 
     return this.http.post(`${environment.URL_BACKEND}/${environment.LOGIN_ENDPOINT}`,formData,{
-      headers:this.headers,responseType:'text'
+      headers:this.headers,
+      responseType:'text'
     });
 
   }
