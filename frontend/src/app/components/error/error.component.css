@@ -1,0 +1,51 @@
+main {
+    height: 90vh;
+    background-image: url("../../../assets/img/error.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div {
+    text-align: center;
+    /* semi-transparent background */
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: Pulse 1s infinite;
+  }
+  p{
+    font-weight: bold;
+  }
+  label{
+    margin-right: 40px;
+    float: right;
+    cursor: pointer;
+    /* semi-transparent background */
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: 0.5s;
+  }
+
+  label:hover{
+    transform: scale(1.02);
+    transition: 0.5s;
+  }
+  
+  /*Imitate a heart beat pulse*/
+  @keyframes Pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
