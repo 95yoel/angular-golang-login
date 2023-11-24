@@ -29,7 +29,7 @@ export class LoginComponent {
         // Call the HTTP service to log the user 
         this.http.login(this.formData).subscribe(
           (res)=>{
-            console.log(res);
+            this.http.handleLogin(res);
           }
         );
       }
