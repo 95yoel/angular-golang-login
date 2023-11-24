@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -30,9 +31,7 @@ func CheckPassword(storedHashedPassword []byte, password, name, surname, email s
 
 	// Validate the provided password using bcrypt
 	err := bcrypt.CompareHashAndPassword(storedHashedPassword, []byte(password))
-	if err != nil {
-		return "", err
-	}
+	handleErrors(err)
 
 	// If the password is valid, create a new JWT token
 	token := jwt.New(jwt.SigningMethodHS256)
@@ -44,12 +43,21 @@ func CheckPassword(storedHashedPassword []byte, password, name, surname, email s
 	claims["surname"] = surname
 	claims["email"] = email
 
-	// Secret key to sign the token
-	tokenString, err := token.SignedString([]byte("uwu"))
-	if err != nil {
-		return "", err
-	}
+	//Get the secret key
+
+	secretKey, err := GetSecretKey()
+	handleErrors(err)
+
+	// Add the secret key to sign the token
+	tokenString, err := token.SignedString([]byte(secretKey))
+	handleErrors(err)
 
 	// Return the generated JWT token string
 	return tokenString, nil
+}
+
+func handleErrors(err error) {
+	if err != nil {
+		fmt.Println("Error:", err)
+	}
 }
