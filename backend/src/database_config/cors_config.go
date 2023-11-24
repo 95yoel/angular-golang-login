@@ -1,4 +1,4 @@
-package databaseconfig
+package corsconfig
 
 import "net/http"
 
