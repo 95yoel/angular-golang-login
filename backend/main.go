@@ -1,14 +1,19 @@
 package main
 
 import (
+	dbs "backend/src/database"
 	corsconfig "backend/src/database_config"
 	router "backend/src/routes"
 	"fmt"
 	"net/http"
+
+	_ "github.com/lib/pq" // import Postgres driver for Go
 )
 
 func main() {
 	fmt.Println("Backend Working !!!")
+
+	dbs.InitializeDb()
 
 	//Call the HTTP router
 	r := router.Router()
