@@ -60,17 +60,17 @@ POST USER FROM FRONTEND
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	var newUser models.User
-	// Decode the post data
+	// Decode the post objet
 	err := json.NewDecoder(r.Body).Decode(&newUser)
 	if err != nil {
 		http.Error(w, "Error decoding JSON", http.StatusBadRequest)
 		return
 	}
 
-	// encrypt the password
+	// Call the function to encrypt the password
 	hashed_password := auth.HashPassword(newUser.Password_hash)
 
-	// Insert new user
+	// Insert new user using the data from the post object
 	_, err = dbs.DB.Exec("INSERT INTO users (name, surname, email, password_hash) VALUES ($1, $2, $3, $4)",
 		newUser.Name, newUser.Surname, newUser.Email, hashed_password)
 	if err != nil {

@@ -1,0 +1,5 @@
+{
+    "user":"postgres",
+    "dbname":"angular-golang-users",
+    "password":"yoel"
+}
