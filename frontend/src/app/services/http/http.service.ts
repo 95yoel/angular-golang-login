@@ -43,7 +43,6 @@ export class HttpService {
   /*
   HANDLE THE RESPONSE OF THE LOGIN
   */
-
   handleLogin(res:any):void{
     this.auth.setTokenJWT(res);
     this.auth.isValidJWT();
