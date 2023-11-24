@@ -1,6 +1,7 @@
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserLog } from '../../interfaces/user-log';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,14 @@ export class HttpService {
 
   login(formData:UserLog){
 
-    return this.http.post('http://localhost:8080/login',formData,{
+    return this.http.post(`${environment.URL_BACKEND}/${environment.LOGIN_ENDPOINT}`,formData,{
       headers:this.headers,responseType:'text'
     });
 
   }
 
   register(){
-
+    
   }
 
 
