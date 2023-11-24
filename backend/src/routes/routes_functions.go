@@ -83,3 +83,44 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "User create succesfully")
 }
+
+/*
+LOGIN USERS FROM THE FRONTEND
+*/
+func Login(w http.ResponseWriter, r *http.Request) {
+
+	var loginUser models.UserLogin
+	var userRegistered models.User
+
+	// Decode the post object
+	err := json.NewDecoder(r.Body).Decode(&loginUser)
+	if err != nil {
+		http.Error(w, "Error decoding JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Search the user in the database
+	row := dbs.DB.QueryRow(`SELECT * FROM users WHERE email = $1`, loginUser.Email)
+
+	err = row.Scan(&userRegistered.Id, &userRegistered.Name, &userRegistered.Surname, &userRegistered.Email, &userRegistered.Password_hash)
+	if err != nil {
+		log.Printf("Error scanning row: %v", err)
+		http.Error(w, "User not found", http.StatusUnauthorized)
+		return
+	}
+
+	// Cast the stored password into bytes
+	storedPasswordBytes := []byte(userRegistered.Password_hash)
+
+	/*
+		Check if password is valid, obtain the JWT token and add the claims Name , Surname and email
+	*/
+	token, err := auth.CheckPassword(storedPasswordBytes, loginUser.Password_hash, userRegistered.Name, userRegistered.Surname, userRegistered.Email)
+	if err != nil {
+		http.Error(w, "Wrong Password", http.StatusUnauthorized)
+		return
+	}
+
+	// Write the token in the response
+	w.Write([]byte(token))
+}
