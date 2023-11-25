@@ -17,7 +17,7 @@ func GetConnectionString() string {
 	if err != nil {
 		log.Fatal("Error loading configuration", err)
 	}
-	connectionString := createConnectionString(config)
+	connectionString := createConnectionString(config, config.Host)
 	return connectionString
 }
 
@@ -57,6 +57,6 @@ func loadConfig(filename string) (models.Config, error) {
 Create the connectionString in the format :
 connectionString := "user=user password=password dbname=dbname  sslmode=disable"
 */
-func createConnectionString(config models.Config) string {
-	return "user=" + config.User + " password=" + config.Password + " dbname=" + config.DBname + " sslmode=disable"
+func createConnectionString(config models.Config, host string) string {
+	return "user=" + config.User + " password=" + config.Password + " dbname=" + config.DBname + " host=" + host + " sslmode=disable"
 }
